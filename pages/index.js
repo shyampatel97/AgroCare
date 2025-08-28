@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -46,6 +47,8 @@ export default function Home() {
 
   if (!user) {
     return (
+      <div>
+        <Navbar /> 
       <div style={{ padding: "20px", textAlign: "center" }}>
         <h1>Welcome to AgroCare</h1>
         <p>Please log in to continue</p>
@@ -56,11 +59,13 @@ export default function Home() {
           <button style={{ padding: "10px 20px", margin: "10px" }}>Register</button>
         </Link>
       </div>
+      </div>
     );
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
+      <Navbar />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
         <h1>HI {user.first_name} {user.last_name}!</h1>
         <button onClick={handleLogout} style={{ padding: "10px 20px" }}>

@@ -41,6 +41,12 @@ export default async function handler(req, res) {
       { expiresIn: "7d" }
     );
 
+    console.log("=== JWT TOKEN GENERATED ===");
+    console.log("User ID:", user._id);
+    console.log("Email:", user.email);
+    console.log("Token:", token);
+    console.log("Token expires in: 7 days");
+    console.log("============================");
     return res.status(200).json({
       message: "Login successful",
       token,

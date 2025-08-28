@@ -12,8 +12,8 @@ export default async function handler(req, res) {
 
     const { first_name, last_name, email, password, location, profile_image_url } = req.body;
 
-    if (!first_name || !last_name || !email || !password || !location || !profile_image_url) {
-      return res.status(400).json({ error: "All fields are required" });
+    if (!first_name || !last_name || !email || !password || !location) {
+      return res.status(400).json({ error: "All fields except profile image are required" });
     }
 
     const existing = await User.findOne({ email });
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       email,
       password_hash,
       location,
-      profile_image_url,
+      profile_image_url: profile_image_url || "",
     });
 
     return res.status(201).json({ message: "User registered successfully", user });
